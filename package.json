@@ -1,0 +1,14 @@
+{
+  "name": "lunar-api",
+  "version": "1.0.0",
+  "description": "Lunar calendar API with image generation",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "canvas": "^2.8.0",
+    "lunar-javascript": "^1.2.31"
+  }
+}
