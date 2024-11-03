@@ -6,7 +6,7 @@ const path = require('path');
 const app = express();
 
 // 注册字体
-registerFont(path.join(__dirname, 'fonts', 'simhei.ttf'), { family: 'SimHei' });
+registerFont(path.join(__dirname, '..', 'fonts', 'simhei.ttf'), { family: 'SimHei' });
 
 // 获取农历信息的函数
 function getPerpetualOutput() {
@@ -79,7 +79,7 @@ function generateImage(data) {
 }
 
 // API端点：获取图片
-app.get('/lunar/getpic', (req, res) => {
+app.get('/api/lunar/getpic', (req, res) => {
     const data = getPerpetualOutput();
     const image = generateImage(data);
     res.writeHead(200, {
@@ -90,18 +90,10 @@ app.get('/lunar/getpic', (req, res) => {
 });
 
 // API端点：获取JSON数据
-app.get('/lunar/getapi', (req, res) => {
+app.get('/api/lunar/getapi', (req, res) => {
     const data = getPerpetualOutput();
     res.json(data);
 });
 
-// 为Vercel设置导出
+// 导出 app
 module.exports = app;
-
-// 如果不是在Vercel上运行，则在本地启动服务器
-if (process.env.NODE_ENV !== 'production') {
-    const port = process.env.PORT || 3000;
-    app.listen(port, () => {
-        console.log(`Server is running on port ${port}`);
-    });
-}
